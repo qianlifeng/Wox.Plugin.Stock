@@ -1,34 +1,14 @@
-> For developer
+# Stock
 
-    Please run `make init` to initialize the project.
+Search stocks, check quotes and price charts, and manage your watchlist in Wox. Supports mainland China, Hong Kong, and US markets.
 
-# {{.Name}}
+![Stock watchlist and quotes](screenshot-home.png)
 
-A Wox plugin template using the Node.js SDK. Wox requires Node.js 20 or later.
+![Stock price chart](screenshot-detail.png)
 
-## Develop
+## Install
 
-Install Node.js, pnpm, Python 3 and Make, then run:
+`Require Wox >= v2.5.0`
 
-```sh
-make init
-make install
-make test
-make build
-```
+Open Wox and enter `wpm install stock` to install the plugin from the plugin store.
 
-`make dev` rebuilds when source files change. `make lint` checks the code and `make format` formats it. The build is written to `dist/`.
-
-## Package
-
-```sh
-make package
-```
-
-Open the resulting `.wox` file in Wox to install it. The example requires Wox 2.4.8 or later.
-
-## Install from the store
-
-```sh
-wpm install {{.Name}}
-```

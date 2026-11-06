@@ -1,20 +1,234 @@
 {
-  "Id": "{{.Id}}",
+  "Id": "074ff6c9-50d1-4c26-9583-c6e48b3c48f2",
   "TriggerKeywords": [
-    "{{.TriggerKeyword}}"
+    "stock",
+    "gp"
   ],
-  "Name": "{{.Name}}",
-  "Description": "{{.Description}}",
-  "Author": "{{.Author}}",
-  "Version": "0.0.8",
-  "MinWoxVersion": "2.4.8",
+  "Name": "i18n:plugin_name",
+  "Description": "i18n:plugin_description",
+  "Author": "qianlifeng",
+  "Version": "1.1.5",
+  "MinWoxVersion": "2.5.0",
   "Runtime": "nodejs",
-  "Website": "{{.Website}}",
+  "Website": "https://github.com/qianlifeng/Wox.Plugin.Stock",
   "Entry": "index.js",
-  "Icon": "relative:images/app.svg",
+  "Icon": "relative:images/app.png",
   "SupportedOS": [
     "windows",
     "linux",
     "darwin"
+  ],
+  "Features": [
+    {
+      "Name": "debounce",
+      "Params": {
+        "IntervalMs": 300
+      }
+    },
+    {
+      "Name": "ignoreAutoScore"
+    },
+    {
+      "Name": "mru",
+      "Params": {
+        "HashBy": "identityKey"
+      }
+    }
+  ],
+  "SettingDefinitions": [
+    {
+      "Type": "table",
+      "Value": {
+        "Key": "watchlist",
+        "DefaultValue": "[]",
+        "Title": "i18n:setting_watchlist",
+        "Tooltip": "i18n:setting_watchlist_tip",
+        "MaxHeight": 360,
+        "InlineTable": true,
+        "Columns": [
+          {
+            "Key": "name",
+            "Label": "i18n:column_name",
+            "Type": "text",
+            "Width": 140
+          },
+          {
+            "Key": "code",
+            "Label": "i18n:column_code",
+            "Type": "text",
+            "Width": 110,
+            "Validators": [
+              {
+                "Type": "not_empty",
+                "Value": {}
+              }
+            ]
+          },
+          {
+            "Key": "market",
+            "Label": "i18n:column_market",
+            "Type": "select",
+            "Width": 120,
+            "Validators": [
+              {
+                "Type": "not_empty",
+                "Value": {}
+              }
+            ],
+            "SelectOptions": [
+              {
+                "Label": "i18n:market_a",
+                "Value": "a"
+              },
+              {
+                "Label": "i18n:market_hk",
+                "Value": "hk"
+              },
+              {
+                "Label": "i18n:market_us",
+                "Value": "us"
+              }
+            ]
+          },
+          {
+            "Key": "quoteId",
+            "Label": "i18n:column_quote_id",
+            "Tooltip": "i18n:column_quote_id_tip",
+            "Type": "text",
+            "Width": 140,
+            "HideInTable": true
+          }
+        ]
+      },
+      "IsPlatformSpecific": false
+    }
+  ],
+  "I18n": {
+    "en_US": {
+      "plugin_name": "Stock",
+      "plugin_description": "Look up A-share, Hong Kong, and US quotes. Each market can use a different source.",
+      "setting_watchlist": "Watchlist",
+      "setting_watchlist_tip": "Quotes refresh about once a minute. Each market has its own source order and tries the next source when one fails.\n\nAdd a row here, or use Add to watchlist on a search result:\n1. Code: 600519, 00700, or AAPL\n2. Market: A-share, Hong Kong, or US\n3. Name is optional. Quote ID is filled in when the source provides one.",
+      "column_name": "Name",
+      "column_code": "Code",
+      "column_market": "Market",
+      "column_quote_id": "Quote ID",
+      "column_quote_id_tip": "Source id such as 1.600519 or 105.AAPL. Leave blank for a US ticker and the plugin will use a source that accepts the code.",
+      "sort": "Sort",
+      "sort_default": "Default",
+      "sort_desc": "Gainers",
+      "sort_asc": "Losers",
+      "market_a": "A-share",
+      "market_hk": "Hong Kong",
+      "market_us": "US",
+      "empty_watchlist_title": "Watchlist is empty",
+      "empty_watchlist_sub": "Type a name or code, such as 茅台, 600519, 00700, or AAPL",
+      "empty_title": "No matching stock",
+      "empty_sub": "Try a code or a Chinese name",
+      "error_title": "Quote lookup failed",
+      "quote_unavailable": "Quote unavailable",
+      "action_copy_price": "Copy price",
+      "action_copy_code": "Copy code",
+      "action_open": "Open quote",
+      "action_add": "Add to watchlist",
+      "action_remove": "Remove from watchlist",
+      "notify_copied": "Copied",
+      "notify_added": "Added to watchlist",
+      "notify_removed": "Removed from watchlist",
+      "notify_exists": "Already in the watchlist",
+      "notify_full": "Watchlist is full",
+      "notify_copy_failed": "Could not copy",
+      "notify_open_failed": "Could not open the quote page",
+      "notify_save_failed": "Could not save the watchlist",
+      "source_eastmoney": "East Money",
+      "source_tencent": "Tencent",
+      "source_yahoo": "Yahoo",
+      "relative_now": "Just now",
+      "relative_minute": "{n} minute ago",
+      "relative_minutes": "{n} minutes ago",
+      "relative_hour": "{n} hour ago",
+      "relative_hours": "{n} hours ago",
+      "relative_day": "{n} day ago",
+      "relative_days": "{n} days ago",
+      "session_pre": "Pre",
+      "session_post": "Post",
+      "tool_search": "Search A-share, Hong Kong, and US stocks by name or code",
+      "tool_quotes": "Get cached-or-live quotes for known stocks. Tries the next source for a market when one fails.",
+      "tool_list": "List watchlist stocks without prices",
+      "tool_add": "Add a stock to the watchlist",
+      "tool_remove": "Remove a stock from the watchlist",
+      "action_detail": "View quote details",
+      "detail_language": "en_US",
+      "action_back": "Back to results",
+      "command_detail": "Show a stock chart by name or code",
+      "detail_prompt_title": "Enter a stock name or code",
+      "detail_prompt_sub": "For example: stock detail Apple or stock detail AAPL"
+    },
+    "zh_CN": {
+      "plugin_name": "股票",
+      "plugin_description": "查询 A 股、港股和美股报价。每个市场可以换自己的数据源。",
+      "setting_watchlist": "自选股",
+      "setting_watchlist_tip": "报价大约每分钟刷新一次。每个市场有自己的数据源顺序，某个源失败时会尝试下一个。\n\n可以在这里添加，也可以在搜索结果里加入自选：\n1. 代码：600519、00700 或 AAPL\n2. 市场：A股、港股或美股\n3. 名称可以不填。行情 ID 能自动补上时会写上。",
+      "column_name": "名称",
+      "column_code": "代码",
+      "column_market": "市场",
+      "column_quote_id": "行情 ID",
+      "column_quote_id_tip": "数据源编号，例如 1.600519 或 105.AAPL。美股只填代码时可以留空，插件会改用接受代码的源。",
+      "sort": "排序",
+      "sort_default": "默认",
+      "sort_desc": "涨幅",
+      "sort_asc": "跌幅",
+      "market_a": "A股",
+      "market_hk": "港股",
+      "market_us": "美股",
+      "empty_watchlist_title": "自选股是空的",
+      "empty_watchlist_sub": "输入名称或代码，例如 茅台、600519、00700、AAPL",
+      "empty_title": "没有匹配的股票",
+      "empty_sub": "试试代码或中文名",
+      "error_title": "行情查询失败",
+      "quote_unavailable": "暂时没有报价",
+      "action_copy_price": "复制价格",
+      "action_copy_code": "复制代码",
+      "action_open": "打开行情",
+      "action_add": "加入自选",
+      "action_remove": "移出自选",
+      "notify_copied": "已复制",
+      "notify_added": "已加入自选",
+      "notify_removed": "已移出自选",
+      "notify_exists": "自选里已经有了",
+      "notify_full": "自选已满",
+      "notify_copy_failed": "复制失败",
+      "notify_open_failed": "无法打开行情页",
+      "notify_save_failed": "自选保存失败",
+      "source_eastmoney": "东方财富",
+      "source_tencent": "腾讯",
+      "source_yahoo": "Yahoo",
+      "relative_now": "刚刚",
+      "relative_minute": "{n} 分钟前",
+      "relative_minutes": "{n} 分钟前",
+      "relative_hour": "{n} 小时前",
+      "relative_hours": "{n} 小时前",
+      "relative_day": "{n} 天前",
+      "relative_days": "{n} 天前",
+      "session_pre": "盘前",
+      "session_post": "盘后",
+      "tool_search": "按名称或代码搜索 A 股、港股和美股",
+      "tool_quotes": "查询已知股票的报价。某个市场的数据源失败时会尝试该市场的下一个源。",
+      "tool_list": "列出不带价格的自选股",
+      "tool_add": "把股票加入自选",
+      "tool_remove": "把股票移出自选",
+      "action_detail": "查看行情详情",
+      "detail_language": "zh_CN",
+      "action_back": "返回结果列表",
+      "command_detail": "按名称或代码查看股票详情",
+      "detail_prompt_title": "输入股票名称或代码",
+      "detail_prompt_sub": "例如：stock detail 苹果 或 stock detail 600519"
+    }
+  },
+  "Commands": [
+    {
+      "Command": "detail",
+      "Description": "i18n:command_detail"
+    }
   ]
 }
